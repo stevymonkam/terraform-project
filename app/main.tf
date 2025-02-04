@@ -1,44 +1,36 @@
 provider "aws" {
   region     = "us-east-1"
-  shared_credentials_files = ["C:/Users/stevy/labs/aws_credentials"]
 }
 
-
-module "sg" {
-  source = "../modules/securvolume"
-
+terraform {
+  backend "s3" {
+    bucket = "terraform-backend-abdelhad"
+    key    = "abdelhad-dev.tfstate"
+    region     = "us-east-1"
+  }
 }
 
-module "ebs" {
-  source = "../modules/volumemodule"
+module "security_group" {
+  source = "../modules/security_group"
+  sg_name = "app-sg"
 }
 
-module "eip" {
-  source = "../modules/ipmodule"
-
+module "ec2_instance" {
+  source = "../modules/ec2_instance"
+  instancetype = "t2.micro"
+  aws_common_tag = {
+    Name = "ec2-dev-abdelhad"
+  }
+  security_group_name = "app-sg"
 }
 
-module "ec2module" {
-  source = "../modules/ec2module"
-  sg_name = module.securvolume.sg_name
-
+module "public_ip" {
+  source = "../modules/public_ip"
+  instance_id = module.ec2_instance.ec2_id
 }
 
-resource "aws_eip_association" "eip_ass" {
-  instance_id   = module.ec2module.instance_id
-  allocation_id = module.ipmodule.myeip_id
-
+module "ebs_volume" {
+  source = "../modules/ebs_volume"
+  ebs_size = 10
 }
-
-resource "aws_volume_attachment" "vol_att" {
-
-  device_name = "/dev/sdh"
-  volume_id   = module.volumemodule.volume_id
-  instance_id = module.ec2module.instance_id
-
-}
-
-
-
-
 

@@ -1,12 +1,6 @@
-Author: Abdel-had HANAMI
+Author: MONKAM NAKTAKWEN STEVY
 
-Context: DevOps Bootcamp - class 12
-
-Training Center: eazytraining.fr
-
-Date of Publication: November 7, 2023
-
-LinkedIn: https://www.linkedin.com/in/abdel-had-hanami/
+LinkedIn:[https://www.linkedin.com/in/stevy-monkam-naktakwen/](https://www.linkedin.com/in/stevy-monkam-naktakwen-a84299181/)
 
 ---
 # Infrastructure as Code with Terraform

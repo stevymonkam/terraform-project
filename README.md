@@ -27,12 +27,12 @@ The project is divided into reusable modules to facilitate the management and ma
 - An S3 bucket for the Terraform backend (already created and configured in `app/main.tf`).
 - An SSH key named `devops-abdelhad` must be available and configured in AWS.
 
-## Quick Start
+## Quick Start     
 
 1. Clone this repository to your local machine.
 
     ```
-    git clone https://github.com/Abdel-had/mini-projet-terraform.git
+    git clone https://github.com/stevymonkam/terraform-project.git
     ```
 
 2. Ensure your AWS credentials are correctly configured.
